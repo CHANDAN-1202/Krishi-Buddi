@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishi-Budhi - Smart Farm Records</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to right, #c6efb3, #f8fff5);
+      color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 480px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #2e7d32;
+    }
+
+    p {
+      color: #444;
+      margin: 10px 0 20px 0;
+    }
+
+    .btn {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #388e3c;
+    }
+
+    select {
+      margin-top: 20px;
+      padding: 8px 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .emoji {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="emoji">🌾</div>
+    <h1 id="title">Welcome to Krishi-Budhi</h1>
+    <p id="desc">
+      A smart way for farmers to record, track, and visualize their farm data.
+    </p>
+    <button class="btn" id="btnStart" onclick="goToDashboard()">Start Recording</button>
+
+    <br>
+    <select id="langSelect">
+      <option value="en">English 🇬🇧</option>
+      <option value="kn">ಕನ್ನಡ 🇮🇳</option>
+    </select>
+  </div>
+
+  <footer>© 2025 Krishi-Budhi | Smart Agriculture Platform</footer>
+
+  <script>
+ 
+function goToDashboard() {
+  window.location.href = "dashboard.html";
+}
+
+    const translations = {
+      en: {
+        title: "Welcome to Krishi-Budhi",
+        desc: "A smart way for farmers to record, track, and visualize their farm data.",
+        btnStart: "Start Recording"
+      },
+      kn: {
+        title: "ಕೃಷಿ-ಬುದ್ಧಿಗೆ ಸ್ವಾಗತ",
+        desc: "ಕೃಷಿಕರು ತಮ್ಮ ಕೃಷಿ ಮಾಹಿತಿಯನ್ನು ಡಿಜಿಟಲ್ ರೀತಿಯಲ್ಲಿ ದಾಖಲಿಸಲು, ಟ್ರ್ಯಾಕ್ ಮಾಡಲು ಮತ್ತು ವೀಕ್ಷಿಸಲು ಬುದ್ಧಿವಂತ ಮಾರ್ಗ.",
+        btnStart: "ದಾಖಲೆ ಪ್ರಾರಂಭಿಸಿ"
+      }
+    };
+
+    const title = document.getElementById("title");
+    const desc = document.getElementById("desc");
+    const btnStart = document.getElementById("btnStart");
+    const langSelect = document.getElementById("langSelect");
+
+    // Set default or saved language
+    const savedLang = localStorage.getItem("language") || "en";
+    langSelect.value = savedLang;
+    setLanguage(savedLang);
+
+    langSelect.addEventListener("change", () => {
+      const lang = langSelect.value;
+      setLanguage(lang);
+      localStorage.setItem("language", lang);
+    });
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      title.textContent = t.title;
+      desc.textContent = t.desc;
+      btnStart.textContent = t.btnStart;
+    }
+  </script>
+</body>
+</html>
